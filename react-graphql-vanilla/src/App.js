@@ -104,7 +104,7 @@ class App extends Component {
 
   componentDidMount() {
     this.onFetchFromGithub(this.state.path);
-  }
+  };
 
   onChange = event => {
     this.setState({ path: event.target.value });
@@ -119,7 +119,15 @@ class App extends Component {
 
   onSubmit = event => {
     this.onFetchFromGithub(this.state.path);
-    event.preventDefault();
+  onFetchFromGithub = () => {
+    axiosGitHubGraphQL
+      .post('', { query: GET_ORGANIZATION })
+      .then(result => {
+        this.setState({
+          organization: result.data.data.organization,
+          errors: result.data.errors
+        });
+      });
   };
 
   render() {
