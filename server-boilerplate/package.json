@@ -1,0 +1,25 @@
+{
+  "name": "server-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "dependencies": {
+    "apollo-server": "^2.4.6",
+    "apollo-server-express": "^2.4.6",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "graphql": "^14.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "nodemon": "^1.18.10"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Carlson",
+  "license": "ISC"
+}
