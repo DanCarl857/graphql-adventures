@@ -10,7 +10,6 @@ export default {
             if (!me ) {
                 return null;
             }
-            
             return await models.User.findById(me.id);
         },
     },
