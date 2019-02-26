@@ -1,30 +1,22 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
+import cors from 'cors';
+
+import schema from './schema';
+import resolvers from './resolvers';
+import models from './models';
 
 const app = express();
-const schema = gql`
-    type Query {
-        me: User
-    }
 
-    type User {
-        username: String!
-    }
-`;
-
-const resolvers = {
-    Query: {
-        me: () => {
-            return {
-                username: 'Daniel Carlson',
-            };
-        },
-    },
-};
+app.use(cors());
 
 const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    context: {
+        models,
+        me: models.users[1],
+    },
 });
 
 server.applyMiddleware({ app, path: '/graphql' });
