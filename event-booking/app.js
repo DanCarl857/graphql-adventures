@@ -7,19 +7,20 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/graphql', graphqlHttp({
+app.use(
+    '/graphql', graphqlHttp({
     schema: buildSchema(`
-        type RootQuery {
+        type Query {
             events: [String!]!
         }
 
-        type RootMutation {
+        type Mutation {
             createEvent(name: String): String
         }
 
         schema {
-            query: RootQuery
-            mutation: RootMutation
+            query: Query
+            mutation: Mutation
         }
     `),
     rootValue: {
